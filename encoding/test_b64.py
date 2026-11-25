@@ -4,7 +4,7 @@ import unittest
 from pathlib import Path
 
 
-SCRIPT = Path(__file__).with_name("base64_encoder.py")
+SCRIPT = Path(__file__).with_name("b64.py")
 
 
 class Base64EncoderCliTests(unittest.TestCase):
@@ -17,19 +17,19 @@ class Base64EncoderCliTests(unittest.TestCase):
 
     def test_encode_and_decode(self):
         for operation, value, expected in (
-            ("encode", "Hello, World!", "SGVsbG8sIFdvcmxkIQ=="),
-            ("decode", "SGVsbG8sIFdvcmxkIQ==", "Hello, World!"),
-            ("encode", "café", "Y2Fmw6k="),
-            ("decode", "Y2Fmw6k=", "café"),
-            ("encode", "", ""),
+            ("e", "Hello, World!", "SGVsbG8sIFdvcmxkIQ=="),
+            ("d", "SGVsbG8sIFdvcmxkIQ==", "Hello, World!"),
+            ("e", "café", "Y2Fmw6k="),
+            ("d", "Y2Fmw6k=", "café"),
+            ("e", "", ""),
         ):
             with self.subTest(operation=operation, value=value):
                 result = self.run_script(operation, value)
                 self.assertEqual(result.returncode, 0, result.stderr)
-                self.assertEqual(result.stdout, expected + "\n")
+                self.assertEqual(result.stdout, "\n" + expected + "\n")
 
     def test_invalid_arguments_and_input(self):
-        for args in ((), ("encode",), ("other", "value"), ("decode", "%%%"), ("decode", "/w==")):
+        for args in ((), ("e",), ("other", "value"), ("d", "%%%"), ("d", "/w==")):
             with self.subTest(args=args):
                 result = self.run_script(*args)
                 self.assertNotEqual(result.returncode, 0)

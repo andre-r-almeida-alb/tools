@@ -18,8 +18,8 @@ python <file_name_path> <file_name_path>
 
 ## Encoding - Base64 usage
 ```
-python encoding/base64_encoder.py encode "Hello, World!"
-python encoding/base64_encoder.py decode "SGVsbG8sIFdvcmxkIQ=="
+python encoding/b64.py e "Hello, World!"
+python encoding/b64.py d "SGVsbG8sIFdvcmxkIQ=="
 ```
 
 Decoding expects valid Base64 containing UTF-8 text.

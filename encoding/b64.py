@@ -15,7 +15,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     try:
-        result = encode_base64(args.input_string) if args.operation == "encode" else decode_base64(args.input_string)
+        result = encode_base64(args.input_string) if args.operation == "e" else decode_base64(args.input_string)
     except (binascii.Error, UnicodeError, ValueError) as error:
         parser.error(str(error))
     print("\n" + result)
