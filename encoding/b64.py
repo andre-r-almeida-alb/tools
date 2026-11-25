@@ -10,7 +10,7 @@ def decode_base64(encoded_string):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Encode or decode a UTF-8 string using Base64.")
-    parser.add_argument("operation", choices=("encode", "decode"))
+    parser.add_argument("operation", choices=("e", "d"), help="Operation: 'e' for encode, 'd' for decode")
     parser.add_argument("input_string")
     args = parser.parse_args()
 
@@ -18,4 +18,4 @@ if __name__ == "__main__":
         result = encode_base64(args.input_string) if args.operation == "encode" else decode_base64(args.input_string)
     except (binascii.Error, UnicodeError, ValueError) as error:
         parser.error(str(error))
-    print(result)
+    print("\n" + result)
